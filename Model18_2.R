@@ -189,7 +189,8 @@ for (ii in 1:nrow(tot_states)) {
       cat("id:");print(dat$id)
       cat("pr:");print(dat$pr)
       cat("r:");print(-sum(f1,f2))
-      w$action(label = "No_light_change", weights = c(1, -sample(1:100,1)), pr = dat$pr, id=sample(0:17,length(dat$pr)), end=TRUE)
+      # w$action(label = "No_light_change", weights = c(1, -sample(1:100,1)), pr = dat$pr, id=sample(0:17,length(dat$pr)), end=TRUE)  # works 
+      w$action(label = "No_light_change", weights = c(1, -sample(1:100,1)), pr = dat$pr, id=dat$id, end=TRUE)  # works 
       dat <- transPr(1,idNum)
       cat("id:");print(dat$id)
       cat("pr:");print(dat$pr)
@@ -226,5 +227,5 @@ policyIteAve(mdp2, "Cost", "Duration", )
 getPolicy(mdp2)
 
 # Seems to work
-valueIte(mdp2, "Cost", "Duration", maxIte = 10000, discountFactor = 0.95)
+valueIte(mdp2, "Cost", "Duration", maxIte = 10000, discountFactor = 0.995)
 getPolicy(mdp2)
